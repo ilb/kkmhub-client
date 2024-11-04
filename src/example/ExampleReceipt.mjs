@@ -6,6 +6,11 @@ import ReceiptType from "../constants/ReceiptType.mjs";
 import ReceiptSumType from "../constants/ReceiptSumType.mjs";
 
 export default class ExampleReceipt extends Receipt {
+  constructor(receiptData) {
+    super({ applicationId: "project-name" });
+    this.receiptData = receiptData;
+  }
+
   getName() {
     return "Игрушки";
   }

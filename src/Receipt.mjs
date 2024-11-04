@@ -8,11 +8,9 @@ import ReceiptValidator from "./ReceiptValidator.mjs";
 export default class Receipt {
   /**
    * @param {string} applicationId - идентификатор организации
-   * @param {object} receiptData - любые данные
    */
-  constructor({ applicationId, receiptData }) {
+  constructor({ applicationId }) {
     this.applicationId = applicationId;
-    this.receiptData = receiptData;
     this.validator = new ReceiptValidator();
   }
 
@@ -108,8 +106,8 @@ export default class Receipt {
     let amount = currency(0);
 
     positions.forEach(position => {
-      const curAmount = currency(position.amount);
-      const positionPrice = curAmount.multiply(position.quantity);
+      const positionAmount = currency(parseFloat(position.amount));
+      const positionPrice = positionAmount.multiply(parseFloat(position.quantity));
       amount = amount.add(positionPrice);
     });
 
@@ -171,10 +169,9 @@ export default class Receipt {
   };
 
   /**
-   * Возвращает уникальный идентификатор под которым будет создана запись
-   * в kkmhub (и по которому эту запись можно будет получить)
+   * Возвращает уникальный идентификатор под которым будет создана запись в kkmhub
    *
-   * @returns {string} - строка в формате uuidv4
+   * @returns {string} - строка длиной 32 символа
    */
   getOperationId() {
     this.#methodNotDefined("getOperationId");

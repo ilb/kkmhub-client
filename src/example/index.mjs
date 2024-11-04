@@ -27,7 +27,7 @@ const receiptData = {
   },
 };
 
-const receipt = new ExampleReceipt({ applicationId: "project-name", receiptData });
+const receipt = new ExampleReceipt(receiptData);
 const formattedData = receipt.format();
 
 console.log(formattedData);

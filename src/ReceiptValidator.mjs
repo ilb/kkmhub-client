@@ -41,6 +41,10 @@ export default class ReceiptValidator {
       this.addError("Не заполнено поле operationId");
     }
 
+    if (receiptData.operationId.length > 32) {
+      this.addError("Поле operationId должно быть не длиннее 32 символов");
+    }
+
     if (!receiptData.payTimeString) {
       this.addError("Не заполнено поле payTimeString");
     }
